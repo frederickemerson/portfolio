@@ -1,9 +1,11 @@
 "use client"
 
-import { forwardRef } from "react"
+import { forwardRef, useRef } from "react"
 import Link from "next/link"
+import VariableProximity from "@/components/VariableProximity"
 
 export const CurrentSection = forwardRef<HTMLElement>((props, ref) => {
+  const containerRef = useRef<HTMLElement>(null)
   const projects = [
     {
       title: "PathRAG Optimization",
@@ -48,10 +50,23 @@ export const CurrentSection = forwardRef<HTMLElement>((props, ref) => {
   ]
 
   return (
-    <section id="current" ref={ref} className="min-h-screen py-20 sm:py-32 opacity-0">
+    <section id="current" ref={(el) => {
+      if (typeof ref === 'function') ref(el)
+      else if (ref) ref.current = el
+      containerRef.current = el
+    }} className="min-h-screen py-20 sm:py-32 opacity-0">
       <div className="space-y-12 sm:space-y-16">
         <div className="space-y-4" data-animate>
-          <h2 className="text-3xl sm:text-4xl font-light">What I&apos;m Building Now</h2>
+          <h2 className="text-3xl sm:text-4xl font-light">
+            <VariableProximity
+              label="What I'm Building Now"
+              fromFontVariationSettings="'wght' 200"
+              toFontVariationSettings="'wght' 700"
+              containerRef={containerRef}
+              radius={150}
+              falloff="gaussian"
+            />
+          </h2>
           <p className="text-muted-foreground max-w-2xl">
             Current explorations at the intersection of knowledge graphs, decentralized systems, and computer
             vision—pushing boundaries where they matter.

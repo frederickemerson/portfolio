@@ -1,9 +1,12 @@
 "use client"
 
-import { forwardRef } from "react"
+import { forwardRef, useRef } from "react"
 import { Briefcase, Target, Users, Zap } from "lucide-react"
+import SpotlightCard from "@/components/SpotlightCard"
+import VariableProximity from "@/components/VariableProximity"
 
 export const RolesSection = forwardRef<HTMLElement>((props, ref) => {
+  const containerRef = useRef<HTMLElement>(null)
   const roles = [
     {
       title: "Volunteer Management Head",
@@ -40,56 +43,70 @@ export const RolesSection = forwardRef<HTMLElement>((props, ref) => {
   ]
 
   return (
-    <section id="roles" ref={ref} className="min-h-screen py-20 sm:py-32 opacity-0">
+    <section id="roles" ref={(el) => {
+      if (typeof ref === 'function') ref(el)
+      else if (ref) ref.current = el
+      containerRef.current = el
+    }} className="min-h-screen py-20 sm:py-32 opacity-0">
       <div className="space-y-12 sm:space-y-16">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4" data-animate>
-          <h2 className="text-3xl sm:text-4xl font-light">Current Roles</h2>
+          <h2 className="text-3xl sm:text-4xl font-light">
+            <VariableProximity
+              label="Current Roles"
+              fromFontVariationSettings="'wght' 200"
+              toFontVariationSettings="'wght' 700"
+              containerRef={containerRef}
+              radius={150}
+              falloff="gaussian"
+            />
+          </h2>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-glow"></div>
             <span className="text-sm text-muted-foreground font-mono">ACTIVE</span>
           </div>
         </div>
 
-        <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
-          {roles.map((role, index) => {
-            const IconComponent = role.icon
-            return (
-              <article
-                key={index}
-                data-animate
-                className="group relative p-6 sm:p-8 border border-border rounded-lg hover:border-muted-foreground/50 hover:shadow-2xl transition-all duration-500 opacity-0 overflow-hidden"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-muted/20 to-transparent rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
+        <div className="grid gap-6 sm:gap-8 lg:grid-cols-2 w-full">
+            {roles.map((role, index) => {
+              const IconComponent = role.icon
+              return (
+                <SpotlightCard
+                  key={index}
+                  data-animate
+                  className="group relative p-6 sm:p-8 border border-border bg-background hover:border-muted-foreground/50 hover:shadow-2xl transition-all duration-500 opacity-0 overflow-hidden"
+                  spotlightColor="rgba(132, 0, 255, 0.15)"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-muted/20 to-transparent rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
 
-                <div className="relative space-y-4">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="space-y-2 flex-1">
-                      <div className="flex items-center gap-3">
-                        <div className="p-2 rounded-lg border border-border bg-muted/30 group-hover:border-foreground/50 group-hover:scale-110 transition-all duration-300">
-                          <IconComponent className="w-5 h-5 text-foreground" />
+                  <div className="relative space-y-4">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="space-y-2 flex-1">
+                        <div className="flex items-center gap-3">
+                          <div className="p-2 rounded-lg border border-border bg-muted/30 group-hover:border-foreground/50 group-hover:scale-110 transition-all duration-300">
+                            <IconComponent className="w-5 h-5 text-foreground" />
+                          </div>
+                          <h3 className="text-lg sm:text-xl font-medium group-hover:text-muted-foreground transition-colors duration-300">
+                            {role.title}
+                          </h3>
                         </div>
-                        <h3 className="text-lg sm:text-xl font-medium group-hover:text-muted-foreground transition-colors duration-300">
-                          {role.title}
-                        </h3>
+                        <div className="text-sm text-muted-foreground">{role.organization}</div>
                       </div>
-                      <div className="text-sm text-muted-foreground">{role.organization}</div>
+                      <div className="px-3 py-1 text-xs border border-border rounded-full whitespace-nowrap">
+                        {role.scope}
+                      </div>
                     </div>
-                    <div className="px-3 py-1 text-xs border border-border rounded-full whitespace-nowrap">
-                      {role.scope}
+
+                    <p className="text-muted-foreground leading-relaxed text-sm">{role.description}</p>
+
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground pt-2">
+                      <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+                      <span>Active Role</span>
                     </div>
                   </div>
-
-                  <p className="text-muted-foreground leading-relaxed text-sm">{role.description}</p>
-
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground pt-2">
-                    <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
-                    <span>Active Role</span>
-                  </div>
-                </div>
-              </article>
-            )
-          })}
+                </SpotlightCard>
+              )
+            })}
         </div>
       </div>
     </section>

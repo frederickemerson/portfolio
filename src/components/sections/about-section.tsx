@@ -1,13 +1,27 @@
 "use client"
 
-import { forwardRef } from "react"
+import { forwardRef, useRef } from "react"
+import VariableProximity from "@/components/VariableProximity"
 
 export const AboutSection = forwardRef<HTMLElement>((props, ref) => {
+  const containerRef = useRef<HTMLElement>(null)
+  
   return (
-    <section id="about" ref={ref} className="min-h-screen py-20 sm:py-32 opacity-0">
+    <section id="about" ref={(el) => {
+      if (typeof ref === 'function') ref(el)
+      else if (ref) ref.current = el
+      containerRef.current = el
+    }} className="min-h-screen py-20 sm:py-32 opacity-0">
       <div className="space-y-12 sm:space-y-16">
         <h2 className="text-3xl sm:text-4xl font-light" data-animate>
-          About Me
+          <VariableProximity
+            label="About Me"
+            fromFontVariationSettings="'wght' 200"
+            toFontVariationSettings="'wght' 700"
+            containerRef={containerRef}
+            radius={150}
+            falloff="gaussian"
+          />
         </h2>
 
         <div className="grid lg:grid-cols-2 gap-12 sm:gap-16">

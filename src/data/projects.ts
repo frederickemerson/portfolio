@@ -9,6 +9,7 @@ export const projectsData: Project[] = [
       "Developed real-time choreography replication system using YOLOv11 for skeletal tracking and OpenCV for pose estimation, analyzing dance movements to map them across multiple dancers with spatial transformations. Optimized frame processing with Librosa, SciPy, and NumPy, achieving synchronized performance and ultra-precise movement detection for enhanced group coordination.",
     tech: ["YOLOv11", "OpenCV", "Python", "Librosa", "SciPy", "NumPy"],
     image: "/dance-choreography-tracking-system.jpg",
+    links: ["https://github.com/frederickemerson/Choreoify"],
   },
   {
     title: "Conceptify",
@@ -18,6 +19,7 @@ export const projectsData: Project[] = [
       "Built full-stack learning tracker app using Next.js, Next Auth, and TRPC, enabling daily concept logging with Duolingo-like streak system for consistent habit building. Integrated Nodemailer for custom auth and notifications and Framer Motion for interactive UI, allowing users to draw and write notes, enhancing personal knowledge retention through self-developed end-to-end features.",
     tech: ["Next.js", "TRPC", "Drizzle", "Framer Motion", "Next Auth", "Nodemailer"],
     image: "/conceptify.png",
+    links: ["http://conceptify-eight.vercel.app/"],
   },
   {
     title: "FlashBang",
@@ -27,6 +29,7 @@ export const projectsData: Project[] = [
       "Created productivity-enhancing spotlight search utility in Tauri, JavaScript, and Rust, supporting customizable bangs for rapid web searches, file access, and script execution. Delivered unified interface with predefined commands, streamlining workflow integration and boosting user efficiency through seamless shortcuts.",
     tech: ["Tauri", "Rust", "JavaScript"],
     image: "/flashbang.png",
+    links: ["https://flashbang-intro.vercel.app/"],
   },
   {
     title: "FredLikesToRant",
@@ -36,6 +39,7 @@ export const projectsData: Project[] = [
       "Personal blog focused on breaking down complex technical concepts into accessible explanations for non-programmers. Features engaging written content that translates programming jargon into everyday language, making technology approachable for everyone.",
     tech: ["Next.js", "React.js", "PostgreSQL", "Cloudflare R2", "Neon", "Drizzle", "Spotify API"],
     image: "/fltr.png",
+    links: ["https://fredlikestorant.vercel.app/"],
   },
   {
     title: "Personal Finance Automation",
@@ -53,6 +57,7 @@ export const projectsData: Project[] = [
       "BuildProof is a comprehensive blockchain-based system for tracking construction material compliance through Digital Product Passports (DPPs). Built on Solana for speed and cost-efficiency, BuildProof enables manufacturers, contractors, and auditors to mint, verify, and trade construction materials as NFTs with embedded Environmental Product Declaration (EPD) data. The platform ensures transparency, traceability, and compliance throughout the construction supply chain.",
     tech: ["Solana", "Blockchain", "NFTs", "Web3", "TypeScript", "React"],
     image: "/buildproof.png",
+    links: ["https://buildproof-web.vercel.app/", "https://bp-buildproof.vercel.app/"],
   },
   {
     title: "Spotencify",
@@ -62,6 +67,7 @@ export const projectsData: Project[] = [
       "Implemented music discovery tool with Next.js, TypeScript, Node.js, React, and Framer Motion integrated with Spotify API, converting sentences into playlists via exact phrase matching. Utilized rate-limited requests, in-memory caching, and chunk-based processing, ensuring strict matching with coverage metrics and reducing unmatched words for large inputs.",
     tech: ["Next.js", "TypeScript", "Spotify API", "React", "Framer Motion"],
     image: "/spotencify.png",
+    links: ["https://flashbang-intro.vercel.app/"],
   },
   {
     title: "Cloud-Controlled IoT Vehicle",
@@ -70,7 +76,7 @@ export const projectsData: Project[] = [
     description:
       "Built low-latency remote control system on FRDM KL25Z Arm Chip, ESP-32, and RTOS with custom communication protocols, incorporating dead reckoning for connection drops. Implemented predictive movement algorithms and fail-safe mechanisms, ensuring efficient telemetry transmission and reliable operation during disruptions.",
     tech: ["C++", "FRDM KL25Z", "ESP-32", "RTOS", "HDL Programming"],
-    image: "/iot-vehicle-remote-control.jpg",
+    image: "/ccv.png",
   },
 ]
 

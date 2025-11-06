@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { X } from "lucide-react"
+import { X, ExternalLink } from "lucide-react"
 
 export interface Project {
   title: string
@@ -9,6 +9,7 @@ export interface Project {
   description: string
   tech: string[]
   image: string
+  links?: string[]
 }
 
 interface ProjectDetailModalProps {
@@ -63,6 +64,28 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
               ))}
             </div>
           </div>
+
+          {project.links && project.links.length > 0 && (
+            <div>
+              <h3 className="text-sm font-mono text-muted-foreground mb-3">LINKS</h3>
+              <div className="flex flex-wrap gap-2">
+                {project.links.map((link, index) => (
+                  <a
+                    key={index}
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-lg hover:border-muted-foreground/50 hover:bg-muted/30 transition-all duration-300"
+                  >
+                    <span className="text-foreground group-hover:text-muted-foreground transition-colors">
+                      {new URL(link).hostname.replace('www.', '')}
+                    </span>
+                    <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
